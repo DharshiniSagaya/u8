@@ -1,5 +1,4 @@
 pipeline {
-
     agent any
 
     tools {
@@ -24,6 +23,23 @@ pipeline {
             steps {
                 sh 'mvn package'
             }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'Deployment stage'
+                echo 'Application is ready for deployment'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Build and Deployment Successful!'
+        }
+
+        failure {
+            echo 'Build or Deployment Failed!'
         }
     }
 }
